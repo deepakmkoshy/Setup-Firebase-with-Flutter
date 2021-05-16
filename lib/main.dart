@@ -32,7 +32,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-
   int _counter = 0;
 
   void _incrementCounter() {
@@ -57,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     .doc('test')
                     .snapshots(),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
+                  if (!snapshot.hasData) {
                     return CircularProgressIndicator();
                   }
                   return Text(
